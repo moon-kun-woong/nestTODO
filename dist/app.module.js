@@ -10,13 +10,10 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const users_module_1 = require("./users/users.module");
 const cats_module_1 = require("./cats/cats.module");
 const logger_middleware_1 = require("./middleware/logger.middleware");
 const typeorm_1 = require("@nestjs/typeorm");
 const cats_entity_1 = require("./cats/entity/cats.entity");
-const auth_module_1 = require("./auth/auth.module");
-const user_entity_1 = require("./auth/entity/user.entity");
 let AppModule = class AppModule {
     configure(consumer) {
         consumer
@@ -28,7 +25,6 @@ exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            users_module_1.UsersModule,
             cats_module_1.CatsModule,
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'mysql',
@@ -37,10 +33,9 @@ exports.AppModule = AppModule = __decorate([
                 username: 'root',
                 password: '6361427l??',
                 database: 'test',
-                entities: [cats_entity_1.Cat, user_entity_1.User],
+                entities: [cats_entity_1.Cat],
                 synchronize: true,
             }),
-            auth_module_1.AuthModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

@@ -4,10 +4,7 @@ import { Cat } from './entity/cats.entity';
 
 @Controller('cats')
 export class CatsController {
-    /* 
-    CatService 는 constructor  를 통해 주입된다. 이때 private 을 사용하면 선언과 초기화가 
-    동시에 이루어 지기 때문에 private 하는게 좋을 것.
-    */
+
     constructor(private catsService: CatsService){};
 
     @Get()
