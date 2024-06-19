@@ -8,10 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LoggerMiddleware = void 0;
 const common_1 = require("@nestjs/common");
+const crypto_1 = require("crypto");
 let LoggerMiddleware = class LoggerMiddleware {
     use(req, res, next) {
-        console.log("Request....");
+        const stamp = (0, crypto_1.randomUUID)();
+        const at = Date.now();
+        console.log(`[${stamp}] - ${req.url}`);
         next();
+        console.log(`[${stamp}] finished. Duration time - ${Date.now() - at}`);
     }
 };
 exports.LoggerMiddleware = LoggerMiddleware;

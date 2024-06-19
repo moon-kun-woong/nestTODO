@@ -14,7 +14,7 @@ import { Cat } from './cats/entity/cats.entity';
       host: 'localhost',
       port: 13306,
       username: 'root',
-      password: '6361427l??',
+      password: 'root',
       database: 'test',
       entities: [Cat],
       synchronize: true,

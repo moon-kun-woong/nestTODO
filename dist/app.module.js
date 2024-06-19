@@ -31,7 +31,7 @@ exports.AppModule = AppModule = __decorate([
                 host: 'localhost',
                 port: 13306,
                 username: 'root',
-                password: '6361427l??',
+                password: 'root',
                 database: 'test',
                 entities: [cats_entity_1.Cat],
                 synchronize: true,
