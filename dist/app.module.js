@@ -8,12 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
-const app_controller_1 = require("./app.controller");
-const app_service_1 = require("./app.service");
 const cats_module_1 = require("./cats/cats.module");
 const logger_middleware_1 = require("./middleware/logger.middleware");
-const typeorm_1 = require("@nestjs/typeorm");
-const cats_entity_1 = require("./cats/entity/cats.entity");
 let AppModule = class AppModule {
     configure(consumer) {
         consumer
@@ -26,19 +22,7 @@ exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             cats_module_1.CatsModule,
-            typeorm_1.TypeOrmModule.forRoot({
-                type: 'mysql',
-                host: 'localhost',
-                port: 13306,
-                username: 'root',
-                password: 'root',
-                database: 'test',
-                entities: [cats_entity_1.Cat],
-                synchronize: true,
-            }),
         ],
-        controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

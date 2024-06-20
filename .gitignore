@@ -1,2 +1,3 @@
 node_modules
 db/mysql/data/mysql.sock
+dist

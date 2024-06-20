@@ -15,7 +15,7 @@ let LoggerMiddleware = class LoggerMiddleware {
         const at = Date.now();
         console.log(`[${stamp}] - ${req.url}`);
         next();
-        console.log(`[${stamp}] finished. Duration time - ${Date.now() - at}`);
+        console.log(`[${stamp}] finished. Duration time - ${Date.now() - at} ms`);
     }
 };
 exports.LoggerMiddleware = LoggerMiddleware;

@@ -17,7 +17,19 @@ let CatsModule = class CatsModule {
 exports.CatsModule = CatsModule;
 exports.CatsModule = CatsModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([cats_entity_1.Cat])],
+        imports: [
+            typeorm_1.TypeOrmModule.forRoot({
+                type: 'mysql',
+                host: 'localhost',
+                port: 13306,
+                username: 'root',
+                password: 'root',
+                database: 'test',
+                entities: [cats_entity_1.Cat],
+                synchronize: true,
+            }),
+            typeorm_1.TypeOrmModule.forFeature([cats_entity_1.Cat])
+        ],
         exports: [typeorm_1.TypeOrmModule],
         controllers: [cats_controller_1.CatsController],
         providers: [cats_service_1.CatsService]
