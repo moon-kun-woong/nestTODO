@@ -6,19 +6,8 @@ import { Cat } from './entity/cats.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 13306,
-      username: 'root',
-      password: 'root',
-      database: 'test',
-      entities: [Cat],
-      synchronize: true,
-    }),
     TypeOrmModule.forFeature([Cat])
   ],
-  exports: [TypeOrmModule],
   controllers: [CatsController],
   providers: [CatsService]
 })

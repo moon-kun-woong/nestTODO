@@ -21,17 +21,34 @@ let CatsService = class CatsService {
     constructor(catsRepository) {
         this.catsRepository = catsRepository;
     }
-    findAll() {
-        return this.catsRepository.find();
+    async findOne(id) {
+        const catEntity = await this.catsRepository.findOne({ where: { id: id } });
+        const catDto = {
+            name: catEntity.name,
+            breed: catEntity.breed
+        };
+        return catDto;
     }
-    findOne(id) {
-        return this.catsRepository.findOne({ where: { id: id } });
+    async findAll() {
+        const catEntities = await this.catsRepository.find();
+        const catDtos = catEntities.map(catEntity => ({
+            name: catEntity.name,
+            breed: catEntity.breed
+        }));
+        console.log(catDtos);
+        return catDtos;
     }
-    async create(cat) {
+    async create(createCatDto) {
+        const cat = new cats_entity_1.Cat();
+        cat.name = createCatDto.name;
+        cat.age = createCatDto.age;
+        cat.breed = createCatDto.breed;
         await this.catsRepository.save(cat);
-    }
-    async reomove(id) {
-        await this.catsRepository.delete(id);
+        const result = {
+            name: cat.name,
+            breed: cat.breed
+        };
+        return result;
     }
     async update(id, cat) {
         const existedCat = await this.findOne(id);
@@ -39,17 +56,16 @@ let CatsService = class CatsService {
             await this.catsRepository
                 .createQueryBuilder()
                 .update(cats_entity_1.Cat)
-                .set({
-                name: cat.name,
-                age: cat.age,
-                breed: cat.breed
-            })
+                .set(cat)
                 .where("id = :id", { id })
                 .execute();
         }
         else {
             throw new Error("cat not found!");
         }
+    }
+    async reomove(id) {
+        await this.catsRepository.delete(id);
     }
 };
 exports.CatsService = CatsService;

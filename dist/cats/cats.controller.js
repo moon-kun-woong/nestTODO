@@ -21,30 +21,24 @@ let CatsController = class CatsController {
         this.catsService = catsService;
     }
     ;
-    findAll() {
-        return this.catsService.findAll();
+    async findOne(id) {
+        return await this.catsService.findOne(id);
     }
-    findOne(id) {
-        return this.catsService.findOne(id);
+    async findAll() {
+        return await this.catsService.findAll();
     }
-    create(cat) {
-        return this.catsService.create(cat);
-    }
-    remove(id) {
-        this.catsService.reomove(id);
+    create(createCatDto) {
+        return this.catsService.create(createCatDto);
     }
     update(id, cat) {
         this.catsService.update(id, cat);
         return `This action updates a #${id} cat..`;
     }
+    remove(id) {
+        this.catsService.reomove(id);
+    }
 };
 exports.CatsController = CatsController;
-__decorate([
-    (0, common_1.Get)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], CatsController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
@@ -53,19 +47,18 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CatsController.prototype, "findOne", null);
 __decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], CatsController.prototype, "findAll", null);
+__decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [cats_entity_1.Cat]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], CatsController.prototype, "create", null);
-__decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)("id")),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", void 0)
-], CatsController.prototype, "remove", null);
 __decorate([
     (0, common_1.Put)(":id"),
     __param(0, (0, common_1.Param)("id")),
@@ -74,6 +67,13 @@ __decorate([
     __metadata("design:paramtypes", [Number, cats_entity_1.Cat]),
     __metadata("design:returntype", void 0)
 ], CatsController.prototype, "update", null);
+__decorate([
+    (0, common_1.Delete)(':id'),
+    __param(0, (0, common_1.Param)("id")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], CatsController.prototype, "remove", null);
 exports.CatsController = CatsController = __decorate([
     (0, common_1.Controller)('cats'),
     __metadata("design:paramtypes", [cats_service_1.CatsService])
